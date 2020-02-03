@@ -6,7 +6,7 @@
 #    By: dsaripap <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/03/27 14:38:43 by dsaripap      #+#    #+#                  #
-#    Updated: 2019/06/18 17:35:05 by dsaripap      ########   odam.nl          #
+#    Updated: 2020/02/02 19:14:38 by dsaripap      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,10 @@ LIBFT = libft/libft.a
 CC = gcc -Wall -Wextra -Werror -g
 SRC =	\
 		ft_contrast.c \
-		ft_inputhandling.c \
-		ft_fileanalysis.c \
+		ft_saveargs.c \
+		ft_readfile.c \
+		ft_applycontrast.c \
+		ft_listfunctions.c \
 
 OBJ = $(SRC:%.c=%.o)
 

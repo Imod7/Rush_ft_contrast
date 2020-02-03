@@ -14,25 +14,33 @@
 
 int					main(int argc, char **argv)
 {
-	t_data			*input_data;		
+	t_data			*input_data;
+	t_lines			*file_lines;
+	int				result;
 
 	input_data = ft_memalloc(sizeof(t_data));
-	if (argc < 7 || argc >7)
+	file_lines = ft_memalloc(sizeof(t_lines));
+	ft_clearproperties(input_data);
+	if (argc < 7 || argc > 7)
 		return (ft_errormanagement(1, input_data));
 	else
 	{
 		if (ft_saveinput(input_data, argc, argv) == -1)
 			return (-1);
+		printf(ANSI_COLOR_GREEN"Saved Image Properties - \
+		Our struct is filled \n");
+		printf("input data name : %s \n", input_data->src_name);
+		printf("contrast : %f \n", input_data->contrast);
+		printf("output filename : %s \n", input_data->out_name);
+		printf("width : %zu \n", input_data->width);
+		printf("height : %zu \n", input_data->height);
+		printf("max : %zu \n\n"ANSI_COLOR_RESET, input_data->max);
 	}
-	if (read_file(input_data) == -1)
+	result = read_file(input_data);
+	if (result == -1)
 		return (-1);
-	printf(ANSI_COLOR_GREEN"\nOur struct is filled \n");
-	printf("input data name : %s \n", input_data->src_name);
-	printf("contrast : %f \n", input_data->contrast);
-	printf("output filename : %s \n", input_data->out_name);
-	printf("width : %zu \n", input_data->width);
-	printf("height : %zu \n", input_data->height);
-	printf("max : %zu \n"ANSI_COLOR_RESET, input_data->max);
-	free(input_data->src_name);
+	ft_applycontrast(input_data, result, file_lines);
+	ft_savenewimage(input_data, file_lines);
+	free(input_data);
 	return (0);
 }
